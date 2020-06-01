@@ -33,7 +33,7 @@ for i in range (width):
     for j in range (height):
         temp.append(0)
     feedback.append(temp)
-#choice=[]
+
 #---------------------------------------Init Physics-------------------------------------------
 g=1
 
@@ -52,6 +52,7 @@ while 1:
     text_rect=text.get_rect()
     ai_event=0
     jump=0
+    choice=[]
     if(trials!=1):
         
         playerrect = player.get_rect()
@@ -132,6 +133,7 @@ while 1:
         playerrect=playerrect.move(speed)
         #-----------------------------------------
         feedback[playerrect.centerx][playerrect.centery]+=(distance(original_pos,goalrect.center)-distance(playerrect.center,goalrect.center))
+        choice.append([playerrect.centerx,playerrect.centery])
         if(quit_flag==1):
             break
         #print(feedback[playerrect.centerx][playerrect.centery])
@@ -147,6 +149,8 @@ while 1:
         pygame.display.flip()
         time.sleep(sleeper)
         if(flag==1):
+                for coord in choice:
+                    feedback[coord[0]][coord[1]]*=2
                 time.sleep(1)
                 flag=0
                 sleeper=0.01
