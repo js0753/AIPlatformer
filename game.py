@@ -28,6 +28,7 @@ playerrect=playerrect.move([55,325])
 trials=0
 min_ind=-1
 feedback=[]
+prev_choice=[]
 for i in range (width):
     temp=[]
     for j in range (height):
@@ -52,6 +53,7 @@ while 1:
     text_rect=text.get_rect()
     ai_event=0
     jump=0
+    flag=0
     choice=[]
     if(trials!=1):
         
@@ -152,10 +154,15 @@ while 1:
                 for coord in choice:
                     feedback[coord[0]][coord[1]]*=2
                 time.sleep(1)
-                flag=0
-                sleeper=0.01
+                #flag=0
+                sleeper=0.0001
                 break
     #--------------------------------End Of Game Loop----------------------------
+    if choice==prev_choice and flag!=1:
+        for coord in choice:
+                    feedback[coord[0]][coord[1]]/=2
+        
+    prev_choice=choice
     #write_list(feedback,choice)
 #----------------------------------------End of All Trials-----------------------------------------------------    
  
